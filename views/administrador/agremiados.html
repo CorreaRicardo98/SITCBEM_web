@@ -96,15 +96,21 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Informacion de usuario</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <p>mostramos todos los datos</p>
+		<ul class="list-group list-group-flush">
+		  <li class="list-group-item">Nombre</li>
+		  <li class="list-group-item">Apellidos</li>
+		  <li class="list-group-item">Rol</li>
+		  <li class="list-group-item">Tipo de plaza</li>
+		  <li class="list-group-item">Direccion</li>
+		</ul>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -114,15 +120,41 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Editar informacion</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>se despliega la informacion del usuario para ser editada</p>
+        <p>se despliega la informacion del usuario para editar</p>
+		<form>
+		  <div class="form-group">
+			<label for="exampleInputName">Nombre</label>
+			<input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp" placeholder="Introduzca nombre">
+		  </div>
+		  <div class="form-group">
+			<label for="exampleInputApellido">Apellidos</label>
+			<input type="text" class="form-control" id="exampleInputApellido" placeholder="Apellidos">
+		  </div>
+		  <div class="form-group">
+			<label for="exampleFormRol">Rol</label>
+			<select class="form-control" id="exampleFormRol">
+			  <option>Administrador</option>
+			  <option>Secretario</option>
+			  <option>Agremiado</option>
+			</select>
+		  </div>
+		  <div class="form-group">
+			<label for="exampleInputPlaza">Tipo de plaza</label>
+			<input type="text" class="form-control" id="exampleInputPlaza" aria-describedby="emailHelp" placeholder="Tipo de plaza">
+		  </div>
+		  <div class="form-group">
+			<label for="exampleInputDireccion">Direccion</label>
+			<input type="text" class="form-control" id="exampleInputDireccion" aria-describedby="emailHelp" placeholder="Direccion">
+		  </div>
+		</form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Guardar cambios</button>
       </div>
     </div>
   </div>
@@ -132,15 +164,15 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar usuario</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>mostramos un mensaje de confirmcion antes de eliminar un agremiado</p>
+        <p>Desea eliminar el usuario?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary">Si</button>
       </div>
     </div>
   </div>
