@@ -45,38 +45,41 @@ delimiter ;
  
 
 
-delimiter $$ 
-drop procedure if exists login; 
-create procedure login( 
- 
-    in _email varchar(45), 
-    in _passw varchar(45), 
-    in _fecha varchar(45), 
-    in _hora varchar(45) 
- 
-) 
-begin 
-    declare id int; 
-    declare nom varchar(45); 
-    declare _rol varchar(45); 
-    declare _email_log varchar(45); 
- 
-    SELECT id_usuarios into id from Usuario where email_usuario = _email and pass_usuario = _passw; 
- 
-    if id != null then 
- 
-        SELECT email into _email_log from log_acceso where id_usuarios = id and status = 1; 
- 
-        if _email_log = null then 
- 
-            SELECT nombre_usuario into nom from Usuario WHERE id_usuarios = id; 
-            SELECT nombre_rol into _rol from Roles R JOIN Usuario U on R.idRoles = U.Roles_idRoles where U.id_usuarios = id; 
-            INSERT INTO log_acceso values (null,_email_log,nom,_rol,_fecha,_hora,null,1,id); 
-            else 
-            SELECT 200 as code, 'Esta usuario ya fue registrado' as response; 
-        end if; 
-    end if; 
-end $$ 
+delimiter $$
+drop procedure if exists login;
+create procedure login(
+
+    in _email varchar(45),
+    in _passw varchar(45),
+    in _fecha varchar(45),
+    in _hora varchar(45),
+    in _idRol int
+
+)
+begin
+    declare id int;
+    declare nom varchar(45);
+    declare _rol varchar(45);
+    declare _email_log varchar(45);
+
+    SELECT id_usuarios into id from Usuario where email_usuario = _email and pass_usuario = _passw and Roles_idRoles = _idRol;
+
+    if id != '' then
+
+        SELECT email into _email_log from log_acceso where id_usuarios = id and status = 1;
+
+        if _email_log != '' then
+            SELECT 200 as code, 'Esta usuario ya fue registrado' as response,_idRol as id limit 1;
+        else
+            SELECT concat(nombre_usuario,' ',ap_pat_usuario,' ',ap_mat_usuario) into nom from Usuario WHERE id_usuarios = id;
+            SELECT nombre_rol into _rol from Roles R JOIN Usuario U on R.idRoles = U.Roles_idRoles where U.id_usuarios = id;
+            INSERT INTO log_acceso values (null,_email,nom,_rol,_fecha,_hora,null,1,id);
+            select 200 as code,'Usuario ingresado' as response,_idRol as id, nom as nombre,id as id_usu;
+        end if;
+    else
+        SELECT 404 as code, 'Usuario no encontrado' as response,0 as id;
+    end if;
+end $$
 delimiter ; 
 
 
@@ -97,5 +100,20 @@ drop procedure if exists getRoles;
 create procedure getRoles()
 begin
     select * from Roles;
+end $$
+delimiter ;
+
+
+delimiter $$
+drop procedure if exists logOut
+create procedure logOut(
+in _hora varchar(45),
+in _id_usuario int
+)
+begin
+    declare _id_log int;
+    select id_registro into _id_log from log_acceso where id_usuarios = _id_usuario and status = 1 limit 1;
+    update log_acceso set status = 0, salida_log = _hora where id_registro = _id_log;
+    select 200 as code, 'success' as response;
 end $$
 delimiter ;

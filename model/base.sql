@@ -173,12 +173,16 @@ CREATE TABLE IF NOT EXISTS `sistema_cobach`.`Roles` (
   PRIMARY KEY (`idRoles`))
 ;
 
+insert into Roles values(1,'Administrador');
+insert into Roles values(2,'Operador');
+insert into Roles values(3,'Secretario');
+
 
 -- -----------------------------------------------------
 -- Table `sistema_cobach`.`Usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sistema_cobach`.`Usuario` (
-  `id_usuarios` INT NOT NULL,
+  `id_usuarios` INT NOT NULL AUTO_INCREMENT,
   `nombre_usuario` VARCHAR(45) NULL,
   `ap_mat_usuario` VARCHAR(45) NULL,
   `ap_pat_usuario` VARCHAR(45) NULL,
@@ -193,6 +197,9 @@ CREATE TABLE IF NOT EXISTS `sistema_cobach`.`Usuario` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ;
+
+insert into Usuario values(1,'ricardo','correa','bautista',1,'ricardo@gmail.com','1213151998');
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

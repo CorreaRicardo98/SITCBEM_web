@@ -29,11 +29,45 @@ class LoginController
         
     }
 
+    public function login()
+    {
+        $user = $_POST['user'];
+        $pass = $_POST['pass'];
+        $rol = $_POST['rol'];
+        $date = $_POST['fecha'];
+        $time = $_POST['hora'];
+
+        $database = LoginController::getDatabaseConnection();
+        $query = "CALL login( '$user', '$pass', '$date', '$time',$rol)";
+        $runQuery = $database->query($query);
+        $fila = $runQuery->fetch_array();
+
+        echo json_encode($fila);
+    }
+
+    public function logOut()
+    {
+        $usuario = $_POST['id'];
+        $time = $_POST['time'];
+        $database = LoginController::getDatabaseConnection();
+        $query = "CALL logOut('$time',$usuario)";
+        $runQuery = $database->query($query);
+        $fila = $runQuery->fetch_array();
+
+        echo json_encode($fila);
+    }
+
 }
 
 switch ($_POST['key']) {
     case 1:
         LoginController::getRoles();
+        break;
+    case 2:
+        LoginController::login();
+        break;
+    case 3:
+        LoginController::logOut();
         break;
     
     default:
