@@ -37,6 +37,7 @@
                             <option value="0" selected>Selecciona tipo de usuario</option>
                           </select>
                     </div>
+                    <!-- Cada input debe tener un id unico-->
                     <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label">Usuario</label>
                       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
@@ -45,7 +46,7 @@
                       <label for="exampleInputPassword1" class="form-label">Contraseña</label>
                       <input type="password" class="form-control" id="exampleInputPassword1" required>
                     </div>
-                    <button type="button" class="btn btn-primary" onclick="login()">Entrar</button>
+                    <button type="button" class="btn btn-primary" onclick="login()">Entrar</button> <!-- Aqui tenemos un ejemplo de onclick esta llamando a la funcion login que esta en login.js-->
                   </form>
               </li>
             </ul>
@@ -55,10 +56,11 @@
 </div>
     
 </div>
+<!-- Vamos a usar la lia de jquery para poder usar ajax-->
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>    
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
-<script src="src/js/login.js"></script>
+<script src="src/js/login.js"></script> <!-- Agregamos el script de login.js donde hacemos funciones-->
 </body>
 </html>
