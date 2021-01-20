@@ -90,6 +90,9 @@ CREATE TABLE IF NOT EXISTS `sistema_cobach`.`plaza` (
   PRIMARY KEY (`id_plaza`))
 ;
 
+ insert into plaza values(1,'completa');
+  insert into plaza values(2,'media');
+
 
 -- -----------------------------------------------------
 -- Table `sistema_cobach`.`afiliado`
@@ -104,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `sistema_cobach`.`afiliado` (
   `email` VARCHAR(45) NOT NULL,
   `foto` TEXT NOT NULL,
   `telefono` VARCHAR(12) NOT NULL,
-  `fecha_ingreso` DATE NOT NULL,
+  `fecha_ingreso` varchar(45) NOT NULL,
   `fecha_nacimiento` VARCHAR(45) NULL,
   `direccion_id_direccion` INT NOT NULL,
   `centro_trabajo_id_centro_trabajo` INT NOT NULL,

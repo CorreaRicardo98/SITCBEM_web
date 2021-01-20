@@ -1,7 +1,7 @@
 delimiter $$ 
 drop procedure if exists agregarAfiliado; 
 create procedure agregarAfiliado( 
-    in _nombre int, 
+    in _nombre varchar(45), 
     in _ap_paterno varchar(45), 
     in _ap_materno varchar(45), 
     in _rfc varchar(45), 
@@ -9,7 +9,7 @@ create procedure agregarAfiliado(
     in _email varchar(45), 
     in _foto text, 
     in _telefono varchar(12), 
-    in _fecha_ingreso date, 
+    in _fecha_ingreso varchar(45), 
     in _fecha_nacimiento varchar(45), 
     in _id_centro_trabajo int, 
     in _id_status int, 
@@ -90,7 +90,19 @@ create procedure verAllAfiliados(
 
 )
 begin
-    SELECT id_afiliado,CONCAT(nombre,' ',ap_paterno,' ',ap_materno) as nombreC FROM afiliado;
+    SELECT id_afiliado,foto,CONCAT(nombre,' ',ap_paterno,' ',ap_materno) as nombreC FROM afiliado;
+end $$
+delimiter ;
+
+
+
+delimiter $$
+drop procedure if exists getAfiliadoData;
+create procedure getAfiliadoData(
+in _id int
+)
+begin
+    select * from afiliado A join direccion d on d.id_direccion = A.direccion_id_direccion join plaza p on p.id_plaza = A.plaza_id_plaza join centro_trabajo ct on ct.id_centro_trabajo = A.centro_trabajo_id_centro_trabajo join estado_civil ec on ec.id_estado_civil = A.estado_civil_id_estado_civil join status s on s.id_status = A.status_id_status where id_afiliado = _id;
 end $$
 delimiter ;
 
@@ -115,5 +127,37 @@ begin
     select id_registro into _id_log from log_acceso where id_usuarios = _id_usuario and status = 1 limit 1;
     update log_acceso set status = 0, salida_log = _hora where id_registro = _id_log;
     select 200 as code, 'success' as response;
+end $$
+delimiter ;
+
+
+delimiter $$
+drop procedure if exists getJobs;
+create procedure getJobs(
+
+)
+begin
+    select * from centro_trabajo;
+end $$
+delimiter ;
+
+
+delimiter $$
+drop procedure if exists getCivil;
+create procedure getCivil(
+
+)
+begin
+    select * from estado_civil;
+end $$
+delimiter ;
+
+delimiter $$
+drop procedure if exists getPlaza;
+create procedure getPlaza(
+
+)
+begin
+    select * from plaza;
 end $$
 delimiter ;
