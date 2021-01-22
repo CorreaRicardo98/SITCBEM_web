@@ -4,12 +4,12 @@ include(__DIR__."/../model/database.php");
 
 class LoginController
 {
-    public function getDatabaseConnection()
+    public static function getDatabaseConnection()
     {
         return new Database();
     }
 
-    public function getRoles()
+    public static function getRoles()
     {
         $database = LoginController::getDatabaseConnection();
         $query = "CALL getRoles()";
@@ -29,7 +29,7 @@ class LoginController
         
     }
 
-    public function login()
+    public static function login()
     {
         $user = $_POST['user'];
         $pass = $_POST['pass'];
@@ -45,7 +45,7 @@ class LoginController
         echo json_encode($fila);
     }
 
-    public function logOut()
+    public static function logOut()
     {
         $usuario = $_POST['id'];
         $time = $_POST['time'];

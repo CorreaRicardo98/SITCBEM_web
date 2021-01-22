@@ -4,12 +4,12 @@ include(__DIR__."/../model/database.php");
 
 class AgremiadosController
 {
-    public function getDatabaseConnection()
+    public static function getDatabaseConnection()
     {
         return new Database();
     }
 
-    public function getAllJobs()
+    public static function getAllJobs()
     {
         $database = AgremiadosController::getDatabaseConnection();
         $query = "call getJobs()";
@@ -29,7 +29,7 @@ class AgremiadosController
     }
 
 
-public function getAllCivil()
+public static function getAllCivil()
 {
     $database = AgremiadosController::getDatabaseConnection();
     $query = "call getCivil()";
@@ -47,7 +47,7 @@ public function getAllCivil()
 }
 
 
-public function addNewAgremiado()
+public static function addNewAgremiado()
 {
     $nombre = $_POST['nombre_nuevo'];
     $aparetrno = $_POST['apaterno_nuevo'];
@@ -110,7 +110,7 @@ public function addNewAgremiado()
     header('Location:../views/administrador/agremiados.html');
 }
 
-public function getAfiliados()
+public static function getAfiliados()
 {
     $database = AgremiadosController::getDatabaseConnection();
     $query = "call verAllAfiliados()";
@@ -129,7 +129,7 @@ public function getAfiliados()
     }
 }
 
-public function getDataAfiliado()
+public static function getDataAfiliado()
 {
     $id = $_POST['id'];
     $database = AgremiadosController::getDatabaseConnection();

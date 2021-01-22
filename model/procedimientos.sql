@@ -40,8 +40,24 @@ SELECT 200 as code, 'Usuario insertado' as response;
 end $$ 
 delimiter ; 
 
- 
 
+delimiter $$ 
+drop procedure if exists agregarUsuario; 
+create procedure agregarUsuario( 
+    in _nombre_usuario varchar(45), 
+    in _ap_mat_usuario varchar(45), 
+    in _ap_pat_usuario varchar(45), 
+    in _Roles_idRoles int(11),
+    in _email_usuario varchar(45),
+    in _pass_usuario varchar(45)   
+
+) 
+begin 
+
+INSERT INTO usuario VALUES (null, _nombre_usuario, _ap_mat_usuario, _ap_pat_usuario, _Roles_idRoles, _email_usuario, _pass_usuario); 
+
+end $$ 
+delimiter ; 
  
 
 
@@ -117,7 +133,7 @@ delimiter ;
 
 
 delimiter $$
-drop procedure if exists logOut
+drop procedure if exists logOut;
 create procedure logOut(
 in _hora varchar(45),
 in _id_usuario int
@@ -159,5 +175,15 @@ create procedure getPlaza(
 )
 begin
     select * from plaza;
+end $$
+delimiter ;
+
+delimiter $$
+drop procedure if exists getUsuarios;
+create procedure getUsuarios(
+
+)
+begin
+    SELECT id_usuarios, nombre_usuario, ap_pat_usuario, ap_mat_usuario, nombre_rol, email_usuario, pass_usuario FROM usuario LEFT JOIN roles on usuario.Roles_idRoles=roles.idRoles;
 end $$
 delimiter ;
