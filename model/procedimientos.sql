@@ -187,3 +187,76 @@ begin
     SELECT id_usuarios, nombre_usuario, ap_pat_usuario, ap_mat_usuario, nombre_rol, email_usuario, pass_usuario FROM usuario LEFT JOIN roles on usuario.Roles_idRoles=roles.idRoles;
 end $$
 delimiter ;
+
+
+
+
+delimiter $$
+drop procedure if exists updateAgremiado;
+create procedure updateAgremiado(
+    in _id_afiliado int,
+    in _nombre varchar(45),
+    in _ap_paterno varchar(45),
+    in _ap_materno varchar(45),
+    in _rfc varchar(45),
+    in _curp varchar(45),
+    in _email varchar(45),
+    in _telefono varchar(12),
+    in _fecha_ingreso varchar(45),
+    in _fecha_nacimiento varchar(45),
+    in _id_centro_trabajo int,
+    in _id_status int,
+    in _id_civil int,
+    in _id_plaza int,
+
+    in _cod_postal int,
+    in _colonia varchar(45),
+    in _municipio varchar(45),
+    in _estado varchar(45),
+    in _tipo_asenta varchar(45),
+    in _calle varchar(45),
+    in _no_int int,
+    in _no_ext int,
+    in _id_direccion int
+)
+begin
+    update direccion set no_ext = _no_ext,
+                         no_int = _no_int,
+                         calle = _calle,
+                         cod_postal = _cod_postal,
+                         colonia = _colonia,
+                         estado = _estado,
+                         municipio = _municipio,
+                         tipo_asenta = _tipo_asenta
+    where id_direccion = _id_direccion;
+
+    update afiliado set nombre = _nombre,
+                        ap_materno = _ap_materno,
+                        ap_paterno = _ap_paterno,
+                        rfc = _rfc,
+                        curp = _curp,
+                        email = _email,
+                        telefono = _telefono,
+                        fecha_ingreso = _fecha_ingreso,
+                        fecha_nacimiento = _fecha_nacimiento,
+                        centro_trabajo_id_centro_trabajo = _id_centro_trabajo,
+                        status_id_status = _id_status,
+                        estado_civil_id_estado_civil = _id_civil,
+                        plaza_id_plaza = _id_plaza
+    where id_afiliado = _id_afiliado;
+
+    select 200 as status, 'ok' as response;
+
+end $$ 
+delimiter ;
+
+delimiter $$
+drop procedure if exists eliminarAgremiado;
+create procedure eliminarAgremiado(
+    in _id int
+)
+begin
+    delete from afiliado where id_afiliado = _id;
+    select 200 as code, 'ok' as response;
+end $$
+delimiter ;

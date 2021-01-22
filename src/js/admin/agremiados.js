@@ -16,6 +16,7 @@ function getAllJobs() {
             $.each(parsejson,function(index){
                 const opt = '<option value="'+ parsejson[index].id +'">'+ parsejson[index].nombre +'</option>';
                 $("#trabajo").append(opt);
+                $("#trabajo_editar").append(opt);
             });
         }
     });
@@ -33,6 +34,7 @@ function getAllCivil() {
             $.each(parsejson,function(index){
                 const opt = '<option value="'+ parsejson[index].id +'">'+ parsejson[index].nombre +'</option>';
                 $("#estado_civil").append(opt);
+                $("#estado_civil_editaṛ").append(opt);
             });
         }
     });
@@ -47,6 +49,7 @@ function getAllAgremiados() {
         },
         dataType:'JSON',
         success:function(parsejson){
+            $("#cartitas").html('');
             $.each(parsejson,function(index){
                 let carta = '<div class="col col-sm-12 col-md-4 col-lg-4 mt-3">';
                 carta+= ' <div class="card" style="width: 18rem; box-shadow: 5px 10px 10px rgba(0, 0,0,0.3);">';
@@ -58,10 +61,10 @@ function getAllAgremiados() {
                 carta+= '<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="getDataAgremiado('+parsejson[index].id+')">Ver</button>';
                 carta+= '</div>';
                 carta+= ' <div class="col">';
-                carta+= '<button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modaleditar">Editar</button>';
+                carta+= '<button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modaleditar" onclick="preEditar('+parsejson[index].id+')">Editar</button>';
                 carta+= '</div>';
                 carta+= '<div class="col">';
-                carta+= '<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modaleliminar">Eliminar</button>';
+                carta+= '<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modaleliminar" onclick="preEliminar('+parsejson[index].id+')">Eliminar</button>';
                 carta+= '</div>';
                 carta+= ' </div>';
                 carta+= ' </div>';
@@ -109,6 +112,58 @@ function getDataAgremiado(id) {
             
 
             $("#verData").html(list);
+        }
+    });
+}
+
+function preEditar(id) {
+    $.ajax({
+        url:'../../controller/agremiadosController.php',
+        method:'POST',
+        dataType:'JSON',
+        data:{
+            key:5,
+            id:id
+        },
+        success:function(data){
+            $("#id_agremiado_editar").val(data.id_afiliado);
+            $("#id_direccion").val(data.id_direccion);
+            $("#nombre_editar").val(data.nombre);
+            $("#apaterno_editar").val(data.ap_paterno);
+            $("#amaterno_editar").val(data.ap_materno);
+            $("#rfc_editar").val(data.rfc);
+            $("#curp_editar").val(data.curp);
+            $("#email_editar").val(data.email);
+            $("#telefono_editar").val(data.telefono);
+            $("#ingreso_editar").val(data.fecha_ingreso);
+            $("#nacimiento_editar").val(data.fecha_nacimiento);
+            $("#postal_editar").val(data.cod_postal);
+            $("#colonia_editar").val(data.colonia);
+            $("#municipio_editar").val(data.municipio);
+            $("#estado_editar").val(data.estado);
+            $("#tipo_asentamiento_editar").val(data.tipo_asenta);
+            $("#calle_editar").val(data.calle);
+            $("#numero_exterior_editar").val(data.no_ext);
+            $("#numero_interior_editar").val(data.no_int);
+        }
+    });
+}
+
+function preEliminar(id) {
+    $("#id_eliminar").val(id);
+}
+
+function eliminar() {
+    let id = $("#id_eliminar").val();
+    $.ajax({
+        url:'../../controller/agremiadosController.php',
+        method:'POST',
+        data:{
+            key:7,
+            id:id
+        },
+        success:function(data) {
+            getAllAgremiados();
         }
     });
 }

@@ -80,6 +80,20 @@ CREATE TABLE IF NOT EXISTS `sistema_cobach`.`estado_civil` (
   PRIMARY KEY (`id_estado_civil`))
 ;
 
+insert into estado_civil values(null,'soltero');
+
+insert into estado_civil values(null,'casado');
+
+insert into cordinacion values(null,'morelia','4435986790');
+
+insert into centro_trabajo values(null,'periferico','4455667788',1);
+
+insert into status values(null,'activo','afiliado activo');
+
+
+insert into status values(null,'inactivo','afiliado inactivo');
+
+
 
 -- -----------------------------------------------------
 -- Table `sistema_cobach`.`plaza`
