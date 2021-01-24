@@ -140,7 +140,7 @@ public static function getDataAfiliado()
     echo json_encode($fila);
 }
 
-public function updateAgremiado()
+public static function updateAgremiado()
 {
     $id = $_POST['id_agremiado_editar'];
     $id_dir = $_POST['id_direccion'];
@@ -198,7 +198,7 @@ public function updateAgremiado()
         header('Location:../views/administrador/agremiados.html');
 }
 
-public function eliminarAremiado()
+public static function eliminarAremiado()
 {
     $id = $_POST['id'];
     $database = AgremiadosController::getDatabaseConnection();

@@ -189,6 +189,37 @@ end $$
 delimiter ;
 
 
+delimiter $$
+drop procedure if exists getUsuariosData;
+create procedure getUsuariosData(
+	in _id int
+)
+begin
+    SELECT id_usuarios, nombre_usuario, ap_pat_usuario, ap_mat_usuario, nombre_rol, email_usuario, pass_usuario FROM usuario LEFT JOIN roles on usuario.Roles_idRoles=roles.idRoles WHERE id_usuarios = _id;
+end $$
+delimiter ;
+
+
+delimiter $$ 
+drop procedure if exists editarUsuario; 
+create procedure editarUsuario(
+	in _id_usuarios int,
+    in _nombre_usuario varchar(45), 
+    in _ap_mat_usuario varchar(45), 
+    in _ap_pat_usuario varchar(45), 
+    in _Roles_idRoles int(11),
+    in _email_usuario varchar(45),
+    in _pass_usuario varchar(45)   
+
+) 
+begin 
+
+	UPDATE usuario SET Roles_idroles = _Roles_idRoles, nombre_usuario = _nombre_usuario, ap_mat_usuario = _ap_mat_usuario, ap_pat_usuario = _ap_pat_usuario, email_usuario = _email_usuario, pass_usuario = _pass_usuario WHERE usuario.id_usuarios =_id_usuarios;
+
+end $$ 
+delimiter ; 
+
+
 
 
 delimiter $$
@@ -258,5 +289,25 @@ create procedure eliminarAgremiado(
 begin
     delete from afiliado where id_afiliado = _id;
     select 200 as code, 'ok' as response;
+end $$
+delimiter ;
+
+delimiter $$
+drop procedure if exists eliminarUsuario;
+create procedure eliminarUsuario(
+    in _id int
+)
+begin
+    DELETE FROM usuario WHERE id_usuarios = _id;
+end $$
+delimiter ;
+
+delimiter $$
+drop procedure if exists getBitacora;
+create procedure getBitacora(
+    
+)
+begin
+	SELECT nombre_ct, email, rol, feha_log, hora_log, salida_log FROM log_acceso ORDER BY id_registro DESC;
 end $$
 delimiter ;

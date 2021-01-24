@@ -9,7 +9,7 @@
     <title>Administrador</title>
 </head>
 <body style="background-color: #f2f2f2;">
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #483d8b;">
+<nav class="navbar navbar-expand-lg navbar-dark bg green-500" style="background-color: #483d8b;">
   <div class="container-fluid">
     <a class="navbar-brand text-white" href="panel.html"><i class="fas fa-arrow-circle-left"></i>   Regresar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,7 +19,8 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       </ul>
       <form class="d-flex">
-        <a class="nav-link text-white" href="#">Cerrar Sesión   <i class="fas fa-sign-out-alt"></i></a>
+        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" id="buscar" >
+        <button class="btn btn-success" type="button" id="button-addon2">Búsqueda</button>
       </form>
     </div>
   </div>
@@ -56,7 +57,7 @@
                 <th scope="col"></th>
               </tr>
             </thead>
-            <tbody id="campos">
+            <tbody id="campos" class="tablaUsers">
               
             </tbody>
           </table>
@@ -68,7 +69,10 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
       <script src="../../src/js/admin/usuarios.js"></script>
 
-      <!--  MODAL AGREGAR   -->
+<!-------------------------------------------------------------------------------------------->
+<!--                                   AGREGAR UN USUARIO                                  -->
+<!-------------------------------------------------------------------------------------------->
+
       <div class="modal fade modal-dialog-scrollable" id="modalInsert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -83,55 +87,110 @@
                 <input type="text" name="key" value="3" style="display: none;">
                 <div class="input-group mb-3">
                   <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
-                  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="nombre_nuevo" name="nombre_nuevo">
+                  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="nombre_nuevo" name="nombre_nuevo" required>
                 </div>
                 <div class="input-group mb-3">
                   <span class="input-group-text">Apellidos</span>
-                  <input type="text" aria-label="First name" class="form-control" id="apaterno_nuevo" name="apaterno_nuevo">
-                  <input type="text" aria-label="Last name" class="form-control" id="amaterno_nuevo" name="amaterno_nuevo">
+                  <input type="text" aria-label="First name" class="form-control" id="apaterno_nuevo" name="apaterno_nuevo" required>
+                  <input type="text" aria-label="Last name" class="form-control" id="amaterno_nuevo" name="amaterno_nuevo" required>
                 </div>
-                <select class="form-select mb-3" aria-label="Default select example" id="roles" name="roles">
+                <select class="form-select mb-3" aria-label="Default select example" id="roles" name="roles" required>
                   <option selected value="0">Seleccione el rol del usuario</option>
                 </select>
                 <div class="input-group mb-3">
                   <span class="input-group-text" id="inputGroup-sizing-default">Correo electrónico</span>
-                  <input type="email" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="email_nuevo" name="email_nuevo">
+                  <input type="email" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="email_nuevo" name="email_nuevo" required>
                 </div>
                 <div class="input-group mb-3">
                   <span class="input-group-text" id="inputGroup-sizing-default">Contraseña</span>
-                  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="pass_nuevo" name="pass_nuevo">
+                  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="pass_nuevo" name="pass_nuevo" required>
                 </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="cancell_nuevo_usuario">Cancelar</button>
-              <input type="submit" value="Enviar" class="btn btn-success">
-            </div>
-          </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="cancell_nuevo_usuario"><i class="fas fa-times"></i>    Cancelar</button>
+                  <input type="submit" value="Agregar" class="btn btn-success">
+                </div>
+            </form>
 
           </div>
         </div>
       </div>
 
-     <!--   MODAL ELIMINAR    -->
-     <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Eliminar usuario</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <p>Desea eliminar el usuario?</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-            <button type="button" class="btn btn-primary">Si</button>
-          </div>
-        </div>
+<!-------------------------------------------------------------------------------------------->
+<!--                                   ELIMINAR UN USUARIO                                  -->
+<!-------------------------------------------------------------------------------------------->
+
+<div class="modal fade" id="modaleliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-    </div> 
-        
+      <div class="modal-body">
+        <p>¿Desea eliminar a este usuario?</p>
+      </div>
+      <input type="text" id="id_eliminarUsuario" style="display: none;">
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i>   No</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="eliminarUsuario()"><i class="fas fa-check"></i>    Si</button>
+      </div>
     </div>
+  </div>
+</div>
 
-  </body>
+<!-------------------------------------------------------------------------------------------->
+<!--                                   EDITAR UN USUARIO                                    -->
+<!-------------------------------------------------------------------------------------------->
+
+<div class="modal fade modal-dialog-scrollable" id="modaleditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar información</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Complete el siguiente formulario para editar la informacion del usuario.</p>
+        <form action="../../controller/usuariosController.php" method="POST" enctype="multipart/form-data">
+          <input type="text" name="key" value="6" style="display: none;"> <!--Datos que necesitamos que tienen que estar ocultos para el usuario final-->
+          <input type="text" name="id_usuario_editar" id="id_usuario_editar" style="display: none;">
+
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="nombre_editar" name="nombre_editar" required>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Apellidos</span>
+            <input type="text" aria-label="First name" class="form-control" id="apaterno_editar" name="apaterno_editar" required>
+            <input type="text" aria-label="Last name" class="form-control" id="amaterno_editar" name="amaterno_editar" required>
+          </div>
+          <select class="form-select mb-3" aria-label="Default select example" id="roles_editar" name="roles_editar" required>
+            <option selected value="0">Seleccione el rol del usuario</option>
+          </select>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Correo electrónico</span>
+            <input type="email" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="email_editar" name="email_editar" required>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Contraseña</span>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="pass_editar" name="pass_editar" required>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i>   Cancelar</button>
+            <input type="submit" value="Guardar cambios" class="btn btn-success" onclick="notiEditar()">
+          </div>
+ 
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        
+</div>
+
+</body>
 </html>

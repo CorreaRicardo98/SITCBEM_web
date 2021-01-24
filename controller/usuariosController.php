@@ -80,6 +80,43 @@ class usuariosController
         $database->query($query);
         header('Location:../views/administrador/usuarios.html');
     }
+
+    public static function getDataUsuario()
+    {
+        $id = $_POST['id'];
+        $database = usuariosController::getDatabaseConnection();
+        $query = "call getUsuariosData($id)";
+        $runQuery = $database->query($query);
+        $fila = $runQuery->fetch_array();
+        echo json_encode($fila);
+    }
+
+    public static function editarUsuario()
+    {
+        $id=$_POST['id_usuario_editar'];
+        $nombre = $_POST['nombre_editar'];
+        $a_paterno = $_POST['apaterno_editar'];
+        $a_materno = $_POST['amaterno_editar'];
+        $rol = $_POST['roles_editar'];
+        $correo = $_POST['email_editar'];
+        $pass = $_POST['pass_editar'];
+
+        $database = usuariosController::getDatabaseConnection();
+        $query = "CALL editarUsuario('$id','$nombre','$a_materno','$a_paterno','$rol','$correo','$pass')";
+
+        $database->query($query);
+
+        header('Location:../views/administrador/usuarios.html');
+    }
+
+    public static function eliminarUsuario()
+    {
+        $id = $_POST['id'];
+        $database = usuariosController::getDatabaseConnection();
+        $query = "call eliminarUsuario($id)";
+        
+        $runQuery = $database->query($query);
+    }
 }
 
 
@@ -96,7 +133,15 @@ switch ($_POST['key']) {
     case 4:
         usuariosController::deleteUsuario();
     break;
-    
+    case 5:
+        usuariosController::getDataUsuario();
+    break;
+    case 6:
+        usuariosController::editarUsuario();
+    break;
+    case 7:
+        usuariosController::eliminarUsuario();
+    break;
     default:
         # code...
         break;

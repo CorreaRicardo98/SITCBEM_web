@@ -2,6 +2,7 @@ $(document).ready(function(){
     getAllJobs();
     getAllCivil();
     getAllAgremiados();
+
 });
 
 function getAllJobs() {
@@ -58,13 +59,13 @@ function getAllAgremiados() {
                 carta+= '<p>'+parsejson[index].nombre+'</p><br>';
                 carta+= '<div class="row">';
                 carta+= '<div class="col">';
-                carta+= '<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="getDataAgremiado('+parsejson[index].id+')">Ver</button>';
+                carta+= '<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="getDataAgremiado('+parsejson[index].id+')"><i class="fas fa-eye"></i>       Ver</button>';
                 carta+= '</div>';
                 carta+= ' <div class="col">';
-                carta+= '<button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modaleditar" onclick="preEditar('+parsejson[index].id+')">Editar</button>';
+                carta+= '<button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modaleditar" onclick="preEditar('+parsejson[index].id+')"><i class="fas fa-edit"></i>      Editar</button>';
                 carta+= '</div>';
                 carta+= '<div class="col">';
-                carta+= '<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modaleliminar" onclick="preEliminar('+parsejson[index].id+')">Eliminar</button>';
+                carta+= '<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modaleliminar" onclick="preEliminar('+parsejson[index].id+')"><i class="fas fa-minus-square"></i>        Eliminar</button>';
                 carta+= '</div>';
                 carta+= ' </div>';
                 carta+= ' </div>';

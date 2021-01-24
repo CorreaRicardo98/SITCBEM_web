@@ -19,7 +19,8 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       </ul>
       <form class="d-flex">
-        <a class="nav-link text-white" href="#">Cerrar Sesión   <i class="fas fa-sign-out-alt"></i></a>
+        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" id="buscar" >
+        <button class="btn btn-success" type="button" id="button-addon2">Búsqueda</button>
       </form>
     </div>
   </div>
@@ -50,7 +51,11 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
       <script src="../../src/js/admin/agremiados.js"></script>
     </div>
-<!-- Scrollable modal -->
+
+<!-------------------------------------------------------------------------------------------->
+<!--                                   VER UN AGREMIADO                                  -->
+<!-------------------------------------------------------------------------------------------->
+
 <div class="modal fade modal-dialog-scrollable" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -65,11 +70,15 @@
 		</ul>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i>   Cerrar</button>
       </div>
     </div>
   </div>
 </div>
+
+<!-------------------------------------------------------------------------------------------->
+<!--                                   AGREGAR UN AGREMIADO                                  -->
+<!-------------------------------------------------------------------------------------------->
 
 <div class="modal fade modal-dialog-scrollable" id="modalInsert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -165,8 +174,8 @@
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-        <input type="submit" value="Enviar" class="btn btn-success">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i>   Cancelar</button>
+        <input type="submit" value="Agregar" class="btn btn-success">
       </div>
     </form>
     </div>
@@ -192,7 +201,7 @@
           <input type="text" name="id_agremiado_editar" id="id_agremiado_editar" style="display: none;">
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="nombre_editar" name="nombre_editar">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="nombre_editar" name="nombre_editar" required>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text">Apellidos</span>
@@ -201,84 +210,86 @@
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">RFC</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="rfc_editar" name="rfc_editar">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="rfc_editar" name="rfc_editar" required>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Curp</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="curp_editar" name="curp_editar">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="curp_editar" name="curp_editar" required>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
-            <input type="email" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="email_editar" name="email_editar">
+            <input type="email" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="email_editar" name="email_editar" required>
           </div>
          
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Telefono</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"id="telefono_editar" name="telefono_editar">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"id="telefono_editar" name="telefono_editar" required>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Fecha Ingreso</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"id="ingreso_editar" name="ingreso_editar">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"id="ingreso_editar" name="ingreso_editar" required>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Fecha Nacimiento</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"id="nacimiento_editar" name="nacimiento_editar">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"id="nacimiento_editar" name="nacimiento_editar" required>
           </div>
-          <select class="form-select mb-3" aria-label="Default select example" id="trabajo_editar" name="trabajo_editar">
+          <select class="form-select mb-3" aria-label="Default select example" id="trabajo_editar" name="trabajo_editar" required>
             <option selected value="0">Seleccione un centro de trabajo</option>
           </select>
-          <select class="form-select mb-3" aria-label="Default select example" id="estado_civil_editaṛ" name="estado_civil_editar">
+          <select class="form-select mb-3" aria-label="Default select example" id="estado_civil_editaṛ" name="estado_civil_editar" required>
             <option selected value="0">Estado Civil</option>
           </select>
-          <select class="form-select mb-3" aria-label="Default select example" id="plaza_editar" name="plaza_editar">
+          <select class="form-select mb-3" aria-label="Default select example" id="plaza_editar" name="plaza_editar" required>
             <option selected>Tipo Plaza</option>
             <option value="1">Completa</option>
             <option value="2">Media</option>
           </select>
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Código Postal</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="postal_editar" name="postal_editar">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="postal_editar" name="postal_editar" required>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Colonia</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="colonia_editar" name="colonia_editar">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="colonia_editar" name="colonia_editar" required>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Municipio</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="municipio_editar" name="municipio_editar">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="municipio_editar" name="municipio_editar" required>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Estado</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="estado_editar" name="estado_editar">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="estado_editar" name="estado_editar" required>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Tipo Asentamiento</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="tipo_asentamiento_editar" name="tipo_asentamiento_editar">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="tipo_asentamiento_editar" name="tipo_asentamiento_editar" required>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Calle</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="calle_editar" name="calle_editar">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="calle_editar" name="calle_editar" required>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Numero Exterior</span>
-            <input type="text" class="form-control" placeholder="si no tiene escriba s/n" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="numero_exterior_editar" name="numero_exterior_editar">
+            <input type="text" class="form-control" placeholder="si no tiene escriba s/n" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="numero_exterior_editar" name="numero_exterior_editar" required>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Número Interior</span>
-            <input type="text" class="form-control" placeholder="si no tiene escriba s/n" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="numero_interior_editar" name="numero_interior_editar">
+            <input type="text" class="form-control" placeholder="si no tiene escriba s/n" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="numero_interior_editar" name="numero_interior_editar" required>
           </div>
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-        <input type="submit" value="Enviar" class="btn btn-success">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i>   Cancelar</button>
+        <input type="submit" value="Guardar cambios" class="btn btn-success">
       </div>
     </form>
     </div>
   </div>
 </div>
 
-
+<!-------------------------------------------------------------------------------------------->
+<!--                                   ELIMINAR UN AGREMIADO                                  -->
+<!-------------------------------------------------------------------------------------------->
 
 <div class="modal fade" id="modaleliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -292,8 +303,8 @@
       </div>
       <input type="text" id="id_eliminar" style="display: none;">
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="eliminar()">Si</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i>    No</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="eliminar()"><i class="fas fa-check"></i>   Si</button>
       </div>
     </div>
   </div>
