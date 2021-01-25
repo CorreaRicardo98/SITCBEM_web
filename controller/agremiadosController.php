@@ -256,6 +256,7 @@ public static function editarAgremiado()
         echo $query;
 
         header('Location:../views/operador/agremiados.html');
+        
 }
 
 public static function eliminarAremiado()
