@@ -9,6 +9,8 @@ class AgremiadosController
         return new Database();
     }
 
+    
+
     public static function getAllJobs()
     {
         $database = AgremiadosController::getDatabaseConnection();
@@ -198,6 +200,64 @@ public static function updateAgremiado()
         header('Location:../views/administrador/agremiados.html');
 }
 
+public static function editarAgremiado()
+{
+    $id = $_POST['id_agremiado_editar'];
+    $id_dir = $_POST['id_direccion'];
+    $nombre = $_POST['nombre_editar'];
+    $aparetrno = $_POST['apaterno_editar'];
+    $amaterno = $_POST['amaterno_editar'];
+    $rfc_editar = $_POST['rfc_editar'];
+    $curp_editar = $_POST['curp_editar'];
+    $email_editar = $_POST['email_editar'];
+    $telefono_editar = $_POST['telefono_editar'];
+    $ingreso = $_POST['ingreso_editar'];
+    $nacimiento_editar = $_POST['nacimiento_editar'];
+    $trabajo = $_POST['trabajo_editar'];
+    $estado_civil = $_POST['estado_civil_editar'];
+    $plaza = $_POST['plaza_editar'];
+    $postal_editar = $_POST['postal_editar'];
+    $colonia_editar = $_POST['colonia_editar'];
+    $municipio_editar = $_POST['municipio_editar'];
+    $estado_editar = $_POST['estado_editar'];
+    $tipo_asentamiento_editar = $_POST['tipo_asentamiento_editar'];
+    $calle_editar = $_POST['calle_editar'];
+    $numero_exterior_editar = $_POST['numero_exterior_editar'];
+    $numero_interior_editar = $_POST['numero_interior_editar'];
+    $database = AgremiadosController::getDatabaseConnection();
+    $query = "call updateAgremiado(
+        $id,
+        '$nombre',
+        '$aparetrno',
+        '$amaterno',
+        '$rfc_editar',
+        '$curp_editar',
+        '$email_editar',
+        '$telefono_editar',
+        '$ingreso',
+        '$nacimiento_editar',
+        $trabajo,
+        1,
+        $estado_civil,
+        $plaza,
+        $postal_editar,
+        '$colonia_editar',
+        '$municipio_editar',
+        '$estado_editar',
+        '$tipo_asentamiento_editar',
+        '$calle_editar',
+        '$numero_interior_editar',
+        '$numero_exterior_editar',
+        $id_dir)";
+
+
+        $database->query($query);
+
+        echo $query;
+
+        header('Location:../views/operador/agremiados.html');
+}
+
 public static function eliminarAremiado()
 {
     $id = $_POST['id'];
@@ -232,7 +292,9 @@ switch ($_POST['key']) {
     case 7:
         AgremiadosController::eliminarAremiado();
         break;
-    
+    case 8;
+        AgremiadosController::editarAgremiado();
+        break;
     default:
         # code...
         break;

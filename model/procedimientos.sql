@@ -311,3 +311,4 @@ begin
 	SELECT nombre_ct, email, rol, feha_log, hora_log, salida_log FROM log_acceso ORDER BY id_registro DESC;
 end $$
 delimiter ;
+
