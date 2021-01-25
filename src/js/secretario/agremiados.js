@@ -14,13 +14,13 @@ function getAllAgremiados() {
         success:function(parsejson){
             $.each(parsejson,function(index){
                 let carta = '<div class="col col-sm-12 col-md-4 col-lg-4 mt-3">';
-                carta+= '<div class="card" style="width: 18rem; box-shadow: 5px 10px 10px rgba(0, 0,0,0.3);">';
-                carta+= '<img src="'+parsejson[index].foto+'" class="card-img-top" alt="..." style="height:150px;">';
+                carta+= '<div class="card" style="border:0.1px solid #000000; box-shadow: 5px 10px 10px rgba(0, 0,0,0.3);">';
+                carta+= '<img src="'+parsejson[index].foto+'" class="rounded mx-auto d-block" alt="..." style="height:150px; object-fit: cover; border:0.1px solid #000000; margin-top:25px;">';
                 carta+= '<div class="card-body">';
                 carta+= '<p>'+parsejson[index].nombre+'</p><br>';
                 carta+= '<div class="row">';
                 carta+= '<div class="col">';
-                carta+= '<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="getDataAgremiado('+parsejson[index].id+')">Ver</button>';
+                carta+= '<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="getDataAgremiado('+parsejson[index].id+')"><i class="fas fa-eye"></i>       Ver</button>';
                 carta+= '</div>';
                 carta+= '</div>';
                 carta+= '</div>';

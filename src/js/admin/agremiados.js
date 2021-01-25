@@ -53,7 +53,7 @@ function getAllAgremiados() {
             $("#cartitas").html('');
             $.each(parsejson,function(index){
                 let carta = '<div class="col col-sm-12 col-md-4 col-lg-4 mt-3">';
-                carta+= ' <div class="card" style="border:0.1px solid #000000; box-shadow: 5px 10px 10px rgba(0, 0,0,0.3);">';
+                carta+= '<div class="card" style="border:0.1px solid #000000; box-shadow: 5px 10px 10px rgba(0, 0,0,0.3);">';
                 carta+= '<img src="'+parsejson[index].foto+'" class="rounded mx-auto d-block" alt="..." style="height:150px; object-fit: cover; border:0.1px solid #000000; margin-top:25px;">';
                 carta+= '<div class="card-body">';
                 carta+= '<p>'+parsejson[index].nombre+'</p><br>';
